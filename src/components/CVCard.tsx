@@ -2,10 +2,10 @@ import React from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {CV} from '@/types/cv';
-import {colors} from '@/constants/colors';
+import {CV} from '../types/cv';
+import {colors} from '../constants/colors';
 import {FileText} from 'lucide-react-native';
-import {RootStackParamList} from '@/navigation/RootNavigator';
+import {RootStackParamList} from '../navigation/RootNavigator';
 
 interface CVCardProps {
   cv: CV;

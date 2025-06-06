@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, ScrollView, Alert, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {colors} from '@/constants/colors';
-import {Button} from '@/components/Button';
-import {useCVStore} from '@/hooks/useCVStore';
-import {pickDocument, extractTextFromCV, parseCV} from '@/utils/fileUtils';
+import {colors} from '../constants/colors';
+import {Button} from '../components/Button';
+import {useCVStore} from '../hooks/useCVStore';
+import {pickDocument, extractTextFromCV, parseCV} from '../utils/fileUtils';
 import {FileUp, Check} from 'lucide-react-native';
-import {CV} from '@/types/cv';
-import {RootStackParamList} from '@/navigation/RootNavigator';
+import {CV} from '../types/cv';
+import {RootStackParamList} from '../navigation/RootNavigator';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 

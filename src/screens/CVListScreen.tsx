@@ -2,14 +2,14 @@ import React from 'react';
 import {View, StyleSheet, FlatList, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useCVStore} from '@/hooks/useCVStore';
-import {CVCard} from '@/components/CVCard';
-import {EmptyState} from '@/components/EmptyState';
-import {SearchBar} from '@/components/SearchBar';
-import {colors} from '@/constants/colors';
+import {useCVStore} from '../hooks/useCVStore';
+import {CVCard} from '../components/CVCard';
+import {EmptyState} from '../components/EmptyState';
+import {SearchBar} from '../components/SearchBar';
+import {colors} from '../constants/colors';
 import {FileText, Plus} from 'lucide-react-native';
-import {Button} from '@/components/Button';
-import {RootStackParamList} from '@/navigation/RootNavigator';
+import {Button} from '../components/Button';
+import {RootStackParamList} from '../navigation/RootNavigator';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 

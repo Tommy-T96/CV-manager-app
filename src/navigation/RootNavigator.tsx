@@ -2,10 +2,10 @@ import React from 'react';
 import {Platform} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigator from './TabNavigator';
-import CVDetailScreen from '@/screens/CVDetailScreen';
-import UploadModalScreen from '@/screens/UploadModalScreen';
-import QueryScreen from '@/screens/QueryScreen';
-import {colors} from '@/constants/colors';
+import CVDetailScreen from '../screens/CVDetailScreen';
+import UploadModalScreen from '../screens/UploadModalScreen';
+import QueryScreen from '../screens/QueryScreen';
+import {colors} from '../constants/colors';
 
 export type RootStackParamList = {
   Tabs: undefined;

@@ -1,11 +1,11 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {colors} from '@/constants/colors';
+import {colors} from '../constants/colors';
 import {FileText, Search, Settings, Upload} from 'lucide-react-native';
-import CVListScreen from '@/screens/CVListScreen';
-import SearchScreen from '@/screens/SearchScreen';
-import UploadScreen from '@/screens/UploadScreen';
-import SettingsScreen from '@/screens/SettingsScreen';
+import CVListScreen from '../screens/CVListScreen';
+import SearchScreen from '../screens/SearchScreen';
+import UploadScreen from '../screens/UploadScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
 export type TabParamList = {
   CVs: undefined;
