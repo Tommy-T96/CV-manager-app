@@ -23,10 +23,10 @@ export default function UploadScreen() {
     uri: string;
     mimeType?: string;
     size?: number;
-  } | null>(null);
+  } | undefined>(undefined);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [extractedText, setExtractedText] = useState<string | null>(null);
-  const [parsedData, setParsedData] = useState<Partial<CV> | null>(null);
+  const [extractedText, setExtractedText] = useState<string | undefined>(undefined);
+  const [parsedData, setParsedData] = useState<Partial<CV> | undefined>(undefined);
 
   const handlePickDocument = async () => {
     try {
@@ -118,9 +118,9 @@ export default function UploadScreen() {
         navigation.navigate('cv/detail', {id: newCV.id});
       } else {
         // Reset the form
-        setUploadedFile(null);
-        setExtractedText(null);
-        setParsedData(null);
+        setUploadedFile(undefined);
+        setExtractedText(undefined);
+        setParsedData(undefined);
         setUploadProgress(0);
       }
     } else {
@@ -139,9 +139,9 @@ export default function UploadScreen() {
             text: 'OK',
             onPress: () => {
               // Reset the form
-              setUploadedFile(null);
-              setExtractedText(null);
-              setParsedData(null);
+              setUploadedFile(undefined);
+              setExtractedText(undefined);
+              setParsedData(undefined);
               setUploadProgress(0);
             },
           },

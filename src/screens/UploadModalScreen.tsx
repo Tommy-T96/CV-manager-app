@@ -23,10 +23,10 @@ export default function UploadModalScreen() {
     uri: string;
     mimeType?: string;
     size?: number;
-  } | null>(null);
+  } | undefined>(undefined);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [extractedText, setExtractedText] = useState<string | null>(null);
-  const [parsedData, setParsedData] = useState<Partial<CV> | null>(null);
+  const [extractedText, setExtractedText] = useState<string | undefined>(undefined);
+  const [parsedData, setParsedData] = useState<Partial<CV> | undefined>(undefined);
 
   const handlePickDocument = async () => {
     try {
