@@ -1,31 +1,10 @@
 import {createTRPCReact} from '@trpc/react-query';
 import {httpLink} from '@trpc/client';
 import superjson from 'superjson';
-import { inferRouterInputs, inferRouterOutputs, AnyRouter } from '@trpc/server';
+import { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
+import type { AppRouter } from '@/backend/trpc/app-router';
 
-// Define a minimal AppRouter type for the client
-// In a real app, you would import this from your backend
-interface AppRouter {
-  _def: {
-    queries: {
-      example: {
-        hi: {
-          _def: {
-            inputs: [{name: string}];
-            output: {hello: string; date: Date};
-          };
-        };
-      };
-    };
-    mutations: {};
-    subscriptions: {};
-  };
-  // Add required properties to satisfy Router constraint
-  createCaller: () => any;
-}
-
-export type { AppRouter };
-
+// Create a React Query client for tRPC
 export const trpc = createTRPCReact<AppRouter>();
 
 const getBaseUrl = () => {
@@ -42,5 +21,6 @@ export const trpcClient = trpc.createClient({
   ],
 });
 
+// Type helpers for inferring types from the router
 export type RouterInput = inferRouterInputs<AppRouter>;
 export type RouterOutput = inferRouterOutputs<AppRouter>;

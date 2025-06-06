@@ -36,8 +36,9 @@ export default function UploadScreen() {
         setUploadedFile({
           name: result.name,
           uri: result.uri,
-          mimeType: result.mimeType,
-          size: result.size,
+          // Convert null to undefined for type safety
+          mimeType: result.mimeType || undefined,
+          size: result.size || undefined,
         });
 
         // Simulate upload progress

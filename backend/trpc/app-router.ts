@@ -7,4 +7,5 @@ export const appRouter = createTRPCRouter({
   }),
 });
 
+// This type is used by the client
 export type AppRouter = typeof appRouter;
