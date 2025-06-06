@@ -102,28 +102,43 @@ export default function UploadScreen() {
     
     addCV(newCV);
     
-    Alert.alert(
-      'Success',
-      'CV has been successfully uploaded and parsed.',
-      [
-        {
-          text: 'View CV',
-          onPress: () => {
-            router.push(`/cv/${newCV.id}`);
+    // Use a more Windows-friendly alert approach
+    if (Platform.OS === 'web') {
+      // For web (including Windows browsers), use a simpler approach
+      if (confirm('CV has been successfully uploaded and parsed. View the CV details?')) {
+        router.push(`/cv/${newCV.id}`);
+      } else {
+        // Reset the form
+        setUploadedFile(null);
+        setExtractedText(null);
+        setParsedData(null);
+        setUploadProgress(0);
+      }
+    } else {
+      // For native platforms, use Alert
+      Alert.alert(
+        'Success',
+        'CV has been successfully uploaded and parsed.',
+        [
+          {
+            text: 'View CV',
+            onPress: () => {
+              router.push(`/cv/${newCV.id}`);
+            },
           },
-        },
-        {
-          text: 'OK',
-          onPress: () => {
-            // Reset the form
-            setUploadedFile(null);
-            setExtractedText(null);
-            setParsedData(null);
-            setUploadProgress(0);
+          {
+            text: 'OK',
+            onPress: () => {
+              // Reset the form
+              setUploadedFile(null);
+              setExtractedText(null);
+              setParsedData(null);
+              setUploadProgress(0);
+            },
           },
-        },
-      ]
-    );
+        ]
+      );
+    }
   };
   
   return (

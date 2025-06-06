@@ -5,20 +5,22 @@ import { Platform } from 'react-native';
 
 export const pickDocument = async () => {
   try {
-    // Check if we're on web
+    // Check if we're on web (which includes Windows browsers)
     if (Platform.OS === 'web') {
-      // For web, we'll use a simple mock implementation
-      return {
-        type: 'success',
-        name: 'Sample CV.pdf',
-        uri: 'https://example.com/sample.pdf',
-        size: 1024 * 1024, // 1MB
-        mimeType: 'application/pdf',
-      };
+      // For web, we'll use DocumentPicker which works on all browsers including Windows
+      const result = await DocumentPicker.getDocumentAsync({
+        type: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'],
+        multiple: false,
+      });
+      
+      if (result.canceled) {
+        return null;
+      }
+      
+      return result.assets[0];
     }
     
     // For native platforms
-    // Use DocumentPicker instead of ImagePicker for documents
     const result = await DocumentPicker.getDocumentAsync({
       type: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'],
       copyToCacheDirectory: true,
@@ -38,7 +40,7 @@ export const pickDocument = async () => {
 export const getFileInfo = async (fileUri: string) => {
   try {
     if (Platform.OS === 'web') {
-      // Mock implementation for web
+      // Mock implementation for web (including Windows browsers)
       return {
         size: 1024 * 1024, // 1MB
         exists: true,

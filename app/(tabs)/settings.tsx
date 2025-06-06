@@ -13,48 +13,80 @@ export default function SettingsScreen() {
   const [autoSave, setAutoSave] = React.useState(true);
   
   const handleExportData = () => {
-    Alert.alert(
-      'Export Data',
-      'This would export all CV data as a JSON file in a real app.',
-      [{ text: 'OK' }]
-    );
+    if (Platform.OS === 'web') {
+      // For web (including Windows browsers), use a more compatible approach
+      const dataStr = JSON.stringify(cvs, null, 2);
+      const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+      
+      const exportFileDefaultName = 'cv-data.json';
+      
+      const linkElement = document.createElement('a');
+      linkElement.setAttribute('href', dataUri);
+      linkElement.setAttribute('download', exportFileDefaultName);
+      linkElement.click();
+    } else {
+      // For native platforms
+      Alert.alert(
+        'Export Data',
+        'This would export all CV data as a JSON file in a real app.',
+        [{ text: 'OK' }]
+      );
+    }
   };
   
   const handleImportData = () => {
-    Alert.alert(
-      'Import Data',
-      'This would allow importing CV data from a JSON file in a real app.',
-      [{ text: 'OK' }]
-    );
+    if (Platform.OS === 'web') {
+      // For web (including Windows browsers)
+      alert('This would open a file picker to import CV data from a JSON file.');
+    } else {
+      Alert.alert(
+        'Import Data',
+        'This would allow importing CV data from a JSON file in a real app.',
+        [{ text: 'OK' }]
+      );
+    }
   };
   
   const handleClearData = () => {
-    Alert.alert(
-      'Clear All Data',
-      'Are you sure you want to delete all CVs? This action cannot be undone.',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: () => {
-            // In a real app, this would clear all data
-            Alert.alert('Data Cleared', 'All CV data has been deleted.');
+    if (Platform.OS === 'web') {
+      // For web (including Windows browsers)
+      if (confirm('Are you sure you want to delete all CVs? This action cannot be undone.')) {
+        // In a real app, this would clear all data
+        alert('All CV data has been deleted.');
+      }
+    } else {
+      Alert.alert(
+        'Clear All Data',
+        'Are you sure you want to delete all CVs? This action cannot be undone.',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
           },
-        },
-      ]
-    );
+          {
+            text: 'Delete',
+            style: 'destructive',
+            onPress: () => {
+              // In a real app, this would clear all data
+              Alert.alert('Data Cleared', 'All CV data has been deleted.');
+            },
+          },
+        ]
+      );
+    }
   };
   
   const handleGetHelp = () => {
-    Alert.alert(
-      'Help & Support',
-      'This would open the help documentation or support contact form in a real app.',
-      [{ text: 'OK' }]
-    );
+    if (Platform.OS === 'web') {
+      // For web (including Windows browsers)
+      alert('This would open the help documentation or support contact form in a real app.');
+    } else {
+      Alert.alert(
+        'Help & Support',
+        'This would open the help documentation or support contact form in a real app.',
+        [{ text: 'OK' }]
+      );
+    }
   };
   
   return (
